@@ -80,3 +80,14 @@ $stmt=$dbh->query('SELECT * FROM `platform`');
 return $stmt->fetchAll(PDO::FETCH_FUNC,'createPlatform');
 }
 
+function fetchPlatformById(int $id) {
+    global $dbh;
+
+    $stmt = $dbh->prepare('SELECT * FROM `platform` WHERE `id` = :id');
+    $stmt->execute([ ':id' => $id ]);
+    $result = $stmt->fetchAll(PDO::FETCH_FUNC, 'createplatform');
+    if (empty($result)) {
+        return null;
+    }
+    return $result[0];
+}

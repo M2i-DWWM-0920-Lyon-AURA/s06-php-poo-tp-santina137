@@ -80,3 +80,14 @@ $stmt=$dbh->query('SELECT * FROM `developer`');
 return $stmt->fetchAll(PDO::FETCH_FUNC,'createDeveloper');
 }
 
+function fetchDeveloperById(int $id) {
+    global $dbh;
+
+    $stmt = $dbh->prepare('SELECT * FROM `developer` WHERE `id` = :id');
+    $stmt->execute([ ':id' => $id ]);
+    $result = $stmt->fetchAll(PDO::FETCH_FUNC, 'createDeveloper');
+    if (empty($result)) {
+        return null;
+    }
+    return $result[0];
+}
