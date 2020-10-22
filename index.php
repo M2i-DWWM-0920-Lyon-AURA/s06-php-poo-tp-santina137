@@ -6,6 +6,28 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet" />
+</head>
+
+
+<?php $dbh = new PDO('mysql:host=localhost;dbname=videogames', 'root', 'root');
+$stmt=$dbh->query('SELECT * FROM `game` LIMIT 50');
+$result=$stmt->fetchAll();
+
+
+require './Game.class.php';
+require './Developer.class.php';
+require './Platform.class.php';
+
+$games=fetchAllGames();
+$developers=fetchAllDevelopers();
+$platforms=fetchAllPlatforms();
+
+var_dump($platforms);
+
+
+
+?>
+
 <body>
     <div class="container">
         <div class="card text-center">
